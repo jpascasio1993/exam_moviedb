@@ -1,5 +1,9 @@
 package com.exam.moviedb.data.domain
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
 data class Movie(
     val backdropPath: String,
     val genreIds: List<Int>,
@@ -12,4 +16,4 @@ data class Movie(
     val video: Boolean,
     val voteCount: Int,
     val page: Int
-)
+) : Parcelable

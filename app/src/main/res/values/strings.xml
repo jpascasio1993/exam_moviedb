@@ -2,4 +2,5 @@
     <string name="app_name">MovieDB</string>
     <string name="movie_api_key">be3d72b3325d01350b29c5e60fa98dd5</string>
     <string name="movie_list">/3/list/%1$s</string>
+    <string name="movie_detail">Movie Detail</string>
 </resources>
