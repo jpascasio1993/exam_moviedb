@@ -1,10 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/item_detail"
-    style="?android:attr/textAppearanceLarge"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp"
-    android:textIsSelectable="true"
-    tools:context=".ui.movie.MovieItemDetailFragment" />
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:orientation="horizontal">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/image_poster"
+            android:layout_width="120dp"
+            android:layout_height="match_parent"
+            android:fitsSystemWindows="true" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/item_detail_padding"
+            >
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/item_detail_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingVertical="@dimen/item_detail_padding"
+                android:textAppearance="@style/TextAppearance.AppCompat.Caption" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/item_detail_rating"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingVertical="@dimen/item_detail_padding"
+                android:textAppearance="@style/TextAppearance.AppCompat.Caption" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/item_detail_popularity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingVertical="@dimen/item_detail_padding"
+                android:textAppearance="@style/TextAppearance.AppCompat.Caption" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/item_detail_revenue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingVertical="@dimen/item_detail_padding"
+                android:textAppearance="@style/TextAppearance.AppCompat.Caption" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/item_detail"
+        style="?android:attr/textAppearanceLarge"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="16dp"
+        android:textIsSelectable="true"
+        tools:context=".ui.movie.MovieItemDetailFragment" />
+</LinearLayout>

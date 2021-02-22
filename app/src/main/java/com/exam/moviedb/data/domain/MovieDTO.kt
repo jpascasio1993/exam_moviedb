@@ -18,7 +18,7 @@ data class MovieDTO(
     @SerializedName("release_date") @ColumnInfo(name = "release_date") val releaseDate: String,
     @SerializedName("title") @ColumnInfo(name = "title") val title: String,
     @SerializedName("video") @ColumnInfo(name = "video") val video: Boolean,
-    @SerializedName("vote_average") @ColumnInfo(name = "vote_average") val voteAverage: Int,
+    @SerializedName("vote_average") @ColumnInfo(name = "vote_average") val voteAverage: Float,
     @SerializedName("vote_count") @ColumnInfo(name = "vote_count") val voteCount: Int,
     @ColumnInfo(name = "page") val page: Int
 )

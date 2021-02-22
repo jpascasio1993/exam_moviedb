@@ -24,7 +24,7 @@ class LocalDataSource(private val movieDAO: MovieDAO) : ILocalDataSource {
                     it.releaseDate,
                     it.title,
                     it.video,
-                    it.voteCount,
+                    it.voteAverage,
                     it.page
                 )
             }

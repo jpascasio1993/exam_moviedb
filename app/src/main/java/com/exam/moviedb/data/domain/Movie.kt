@@ -14,6 +14,6 @@ data class Movie(
     val releaseDate: String,
     val title: String,
     val video: Boolean,
-    val voteCount: Int,
+    val voteAverage: Float,
     val page: Int
 ) : Parcelable

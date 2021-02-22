@@ -36,7 +36,7 @@ class MovieDeserializer: JsonDeserializer<List<MovieDTO>> {
                         movieObject.get("release_date").asString,
                         movieObject.get("title").asString,
                         movieObject.get("video").asBoolean,
-                        movieObject.get("vote_average").asInt,
+                        movieObject.get("vote_average").asFloat,
                         movieObject.get("vote_count").asInt,
                         page
                     )

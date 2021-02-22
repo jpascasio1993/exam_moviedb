@@ -24,11 +24,20 @@
             app:layout_scrollFlags="scroll|exitUntilCollapsed"
             app:toolbarId="@+id/toolbar">
 
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/image_toolbar"
+                android:scaleType="centerCrop"
+                android:fitsSystemWindows="true"
+                app:layout_collapseMode="none"
+            />
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/detail_toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 app:layout_collapseMode="pin"
+                app:contentInsetStartWithNavigation="0dp"
                 app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>
@@ -42,14 +51,58 @@
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical|start"
-        android:layout_margin="@dimen/fab_margin"
-        app:layout_anchor="@+id/item_detail_container"
-        app:layout_anchorGravity="top|end"
-        app:srcCompat="@android:drawable/stat_notify_chat" />
+<!--    <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="200dp"-->
+<!--        app:layout_anchor="@+id/item_detail_container"-->
+<!--        app:layout_anchorGravity="top|center"-->
+<!--        android:orientation="horizontal"-->
+<!--    >-->
+
+<!--        <androidx.appcompat.widget.AppCompatImageView-->
+<!--            android:layout_width="120dp"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:id="@+id/image_poster"-->
+<!--            android:fitsSystemWindows="true"-->
+<!--        />-->
+
+<!--        <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:orientation="vertical">-->
+
+<!--            <androidx.appcompat.widget.AppCompatTextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:textAppearance="@style/TextAppearance.AppCompat.Caption"-->
+<!--                android:id="@+id/item_detail_title"-->
+<!--                android:paddingVertical="@dimen/item_detail_padding"-->
+<!--            />-->
+
+<!--            <androidx.appcompat.widget.AppCompatTextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:textAppearance="@style/TextAppearance.AppCompat.Caption"-->
+<!--                android:id="@+id/item_detail_rating"-->
+<!--                android:paddingVertical="@dimen/item_detail_padding"-->
+<!--            />-->
+
+<!--            <androidx.appcompat.widget.AppCompatTextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:textAppearance="@style/TextAppearance.AppCompat.Caption"-->
+<!--                android:id="@+id/item_detail_popularity"-->
+<!--                android:paddingVertical="@dimen/item_detail_padding"-->
+<!--            />-->
+<!--            <androidx.appcompat.widget.AppCompatTextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:textAppearance="@style/TextAppearance.AppCompat.Caption"-->
+<!--                android:id="@+id/item_detail_revenue"-->
+<!--                android:paddingVertical="@dimen/item_detail_padding"-->
+<!--            />-->
+<!--        </LinearLayout>-->
+
+<!--    </LinearLayout>-->
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
