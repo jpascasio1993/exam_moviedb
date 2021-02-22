@@ -4,16 +4,19 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.exam.moviedb.db.entity.MovieListInfo
-import com.exam.moviedb.db.entity.MovieResult
+import com.exam.moviedb.db.dao.MovieDAO
+import com.exam.moviedb.data.domain.MovieDTO
 
 @Database(
-    entities = [MovieListInfo::class, MovieResult::class],
+    entities = [MovieDTO::class],
     version = 1
 )
-abstract class MovieDB : RoomDatabase() {
+abstract class AppDatabase : RoomDatabase() {
+
+    abstract fun movieDAO(): MovieDAO
+
     companion object {
-        @Volatile private var instance: MovieDB ? = null
+        @Volatile private var instance: AppDatabase ? = null
         private val LOCK = Any()
 
         operator fun invoke(context: Context) = instance ?: synchronized(LOCK) {
@@ -21,7 +24,7 @@ abstract class MovieDB : RoomDatabase() {
         }
 
         private fun build(context: Context) =
-            Room.databaseBuilder(context.applicationContext, MovieDB::class.java, "movie.db")
+            Room.databaseBuilder(context.applicationContext, AppDatabase::class.java, "movie.db")
                 .build()
     }
 }

@@ -1,22 +1,24 @@
 package com.exam.moviedb.data.domain
 
+import androidx.room.*
+import com.exam.moviedb.db.utils.ListIntDataConverter
 import com.google.gson.annotations.SerializedName
 
+@Entity(tableName = "movies")
 data class MovieDTO(
-    @SerializedName("id") val id: Int,
-    @SerializedName("page") val page: Int,
-    @SerializedName("results") val results: List<ResultDTO>,
-    @SerializedName("total_pages") val totalPages: Int,
-    @SerializedName("total_results") val totalResults: Int
-)
-
-data class ResultDTO(
-    @SerializedName("id") val id: Int,
-    @SerializedName("item_count") val itemCount: Int,
-    @SerializedName("description") val description: String,
-    @SerializedName("favorite_count") val favoriteCount: String,
-    @SerializedName("iso_639_1") val language: String,
-    @SerializedName("list_type") val listType: String,
-    @SerializedName("name") val name: String,
-    @SerializedName("poster_path") val posterPath: String
+    @SerializedName("adult") @ColumnInfo(name = "adult") val adult: Boolean,
+    @SerializedName("backdrop_path") @ColumnInfo(name = "backdrop_path") val backdropPath: String,
+    @field:TypeConverters(ListIntDataConverter::class) @ColumnInfo(name = "genre_ids") val genreIds: List<Int> = listOf(),
+    @SerializedName("id") @ColumnInfo(name = "id") @PrimaryKey(autoGenerate = false) val id: Int,
+    @SerializedName("original_language") @ColumnInfo(name = "original_language") val originalLanguage: String,
+    @SerializedName("original_title") @ColumnInfo(name = "original_title") val originalTitle: String,
+    @SerializedName("overview") @ColumnInfo(name = "overview") val overview: String,
+    @SerializedName("popularity") @ColumnInfo(name = "popularity") val popularity: Int,
+    @SerializedName("poster_path") @ColumnInfo(name = "poster_path") val posterPath: String,
+    @SerializedName("release_date") @ColumnInfo(name = "release_date") val releaseDate: String,
+    @SerializedName("title") @ColumnInfo(name = "title") val title: String,
+    @SerializedName("video") @ColumnInfo(name = "video") val video: Boolean,
+    @SerializedName("vote_average") @ColumnInfo(name = "vote_average") val voteAverage: Int,
+    @SerializedName("vote_count") @ColumnInfo(name = "vote_count") val voteCount: Int,
+    @ColumnInfo(name = "page") val page: Int
 )

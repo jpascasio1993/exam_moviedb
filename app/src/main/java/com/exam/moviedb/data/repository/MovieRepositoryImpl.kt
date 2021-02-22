@@ -1,13 +1,33 @@
 package com.exam.moviedb.data.repository
 
+import com.exam.moviedb.data.datasources.ILocalDataSource
+import com.exam.moviedb.data.datasources.IRemoteDataSource
 import com.exam.moviedb.data.domain.Movie
-import com.exam.moviedb.data.domain.IMovieRepository
-import com.exam.moviedb.data.datasources.LocalDataSource
-import com.exam.moviedb.data.datasources.RemoteDataSource
+import com.exam.moviedb.data.domain.Result
+import java.io.IOException
+import java.lang.Exception
 
-class MovieRepositoryImpl(private val localSource: LocalDataSource, private val remoteSource: RemoteDataSource):
+class MovieRepositoryImpl(private val localSource: ILocalDataSource, private val remoteSource: IRemoteDataSource):
     IMovieRepository {
-    override fun fetchDataOnline(offset: Int, limit: Int): List<Movie> {
-        TODO("Not yet implemented")
+    override suspend fun getDataOnline(page: Int): Result<Unit> {
+        return try {
+            val listRemote = remoteSource.fetchMovies(page)
+            localSource.insertMovies(listRemote)
+            Result.Success(Unit)
+        }catch(e: Exception){
+            Result.Error(IOException(e.message, e))
+        }
+    }
+
+    override suspend fun getMovieList(page: Int): Result<List<Movie>> {
+        val count = getMovieCount(page)
+        if(count == 0) {
+            getDataOnline(page)
+        }
+        return localSource.getMovies(page)
+    }
+
+    override fun getMovieCount(page: Int): Int {
+        return localSource.getMoviesCount(page)
     }
 }

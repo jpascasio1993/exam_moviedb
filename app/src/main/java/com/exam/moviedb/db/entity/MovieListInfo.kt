@@ -4,6 +4,7 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import androidx.room.Relation
+import com.exam.moviedb.data.domain.MovieDTO
 
 @Entity(tableName = "movie_list_info")
 data class MovieListInfo(
@@ -14,6 +15,6 @@ data class MovieListInfo(
     @Relation(
         parentColumn = "page",
         entityColumn = "page",
-        entity = MovieResult::class
-    ) val results: List<MovieResult>
+        entity = MovieDTO::class
+    ) val results: List<MovieDTO>
 )
