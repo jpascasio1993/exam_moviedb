@@ -28,15 +28,6 @@ class MovieListAdapter(private val twoPane: Boolean, private val parentActivity:
     ListAdapter<Movie, RecyclerView.ViewHolder>(MyListAdapterDiff) {
     private val FOOTER = 1;
     private val onClickListener: View.OnClickListener
-//    private val glideRequestOptions = RequestOptions()
-//        .diskCacheStrategy(DiskCacheStrategy.ALL)
-//        .fitCenter()
-//        .override(320)
-//        .placeholder(CircularProgressDrawable(parentActivity).apply {
-//            strokeWidth = 5f
-//            centerRadius = 30f
-//            start()
-//        })
 
     init {
         onClickListener = View.OnClickListener { view ->
@@ -103,6 +94,7 @@ class MovieListAdapter(private val twoPane: Boolean, private val parentActivity:
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .fitCenter()
                     .override(320)
+                    .error(R.drawable.ic_baseline_error_24)
                     .placeholder(CircularProgressDrawable(parentActivity).apply {
                         strokeWidth = 5f
                         centerRadius = 30f
@@ -110,6 +102,7 @@ class MovieListAdapter(private val twoPane: Boolean, private val parentActivity:
                     })
                 Glide.with(parentActivity)
                     .load(parentActivity.getString(R.string.tmdb_pic_base_url, "${movie?.posterPath}"))
+                    .error(R.drawable.ic_baseline_error_24)
                     .apply(glideRequestOptions)
                     .into(holder.poster)
             }

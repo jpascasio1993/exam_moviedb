@@ -43,7 +43,7 @@
                     android:id="@+id/item_detail_image_poster"
                     android:layout_width="125dp"
                     android:layout_height="200dp"
-                    android:scaleType="fitXY" />
+                    android:scaleType="fitCenter" />
                 <LinearLayout
                     android:id="@+id/item_detail_rating_parent"
                     android:layout_width="match_parent"

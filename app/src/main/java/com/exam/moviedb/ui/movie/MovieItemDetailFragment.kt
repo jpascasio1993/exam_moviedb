@@ -45,6 +45,7 @@ class MovieItemDetailFragment : Fragment() {
             .diskCacheStrategy(DiskCacheStrategy.ALL)
             .fitCenter()
             .override(320)
+            .error(R.drawable.ic_baseline_error_24)
             .placeholder(CircularProgressDrawable(context!!).apply {
                 strokeWidth = 5f
                 centerRadius = 30f
