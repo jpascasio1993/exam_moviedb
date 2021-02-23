@@ -2,7 +2,6 @@ package com.exam.moviedb.ui.movie.adapter
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -25,7 +24,7 @@ import com.exam.moviedb.utils.DateFormatter
 import java.util.Objects.equals
 
 class MovieListAdapter(private val twoPane: Boolean, private val parentActivity: AppCompatActivity) :
-    ListAdapter<Movie, RecyclerView.ViewHolder>(MyListAdapterDiff) {
+    ListAdapter<Movie, RecyclerView.ViewHolder>(MovieListAdapterDiff) {
     private val FOOTER = 1;
     private val onClickListener: View.OnClickListener
 
@@ -53,7 +52,7 @@ class MovieListAdapter(private val twoPane: Boolean, private val parentActivity:
     }
 
     inner class MovieListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val titleView: TextView = itemView.findViewById(R.id.id_text)
+        val titleView: AppCompatTextView = itemView.findViewById(R.id.id_text)
         val rating: AppCompatTextView = itemView.findViewById(R.id.id_rating)
         val poster: AppCompatImageView = itemView.findViewById(R.id.id_poster)
         val date: AppCompatTextView = itemView.findViewById(R.id.id_release_date)
@@ -86,7 +85,7 @@ class MovieListAdapter(private val twoPane: Boolean, private val parentActivity:
             with(holder.itemView) {
                 tag = movie.copy()
                 setOnClickListener(onClickListener)
-            }.let {
+            }.apply {
                 holder.titleView.text = movie.title.trim().replace(System.getProperty("line.separator")?:"", "")
                 holder.rating.text = movie.voteAverage.toString()
                 holder.date.text = DateFormatter.format(input = movie.releaseDate)
@@ -111,7 +110,7 @@ class MovieListAdapter(private val twoPane: Boolean, private val parentActivity:
 
 }
 
-object MyListAdapterDiff : DiffUtil.ItemCallback<Movie>() {
+object MovieListAdapterDiff : DiffUtil.ItemCallback<Movie>() {
     override fun areItemsTheSame(oldItem: Movie, newItem: Movie): Boolean {
         return oldItem.id == newItem.id
     }

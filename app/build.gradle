@@ -29,6 +29,12 @@ android {
             storeFile file('./keystore/examkey')
             storePassword '123456'
         }
+        debug {
+            keyAlias 'examkey'
+            keyPassword '123456'
+            storeFile file('./keystore/examkey')
+            storePassword '123456'
+        }
     }
 
     buildTypes {
