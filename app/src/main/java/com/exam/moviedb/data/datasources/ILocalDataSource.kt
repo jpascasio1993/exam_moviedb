@@ -1,6 +1,5 @@
 package com.exam.moviedb.data.datasources
 
-import androidx.lifecycle.LiveData
 import com.exam.moviedb.data.domain.Movie
 import com.exam.moviedb.data.domain.MovieDTO
 import com.exam.moviedb.data.domain.Result
