@@ -1,8 +1,6 @@
 package com.exam.moviedb.ui.movie
 
-import android.content.res.Resources
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,7 +8,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.widget.NestedScrollView
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.exam.moviedb.MainActivity
@@ -54,40 +54,71 @@ class MovieItemsFragment : Fragment() {
 
     private fun setupRecyclerView(recycler: RecyclerView, savedInstanceState: Bundle?) {
 
-        val span = (resources.configuration.screenWidthDp / 320).plus(1)
-        val gridLayoutManager = GridLayoutManager(context, span).apply {
-            val spanListener = object : GridLayoutManager.SpanSizeLookup() {
-                override fun getSpanSize(position: Int): Int {
-                    val size = recycler.adapter?.itemCount?.minus(1)
-                    if(position == size) {
-                        return span
-                    }
-                    return 1
-                }
+        if(twoPane) {
+            val linearLayoutManager = LinearLayoutManager(context);
+            val dividerItemDecoration = DividerItemDecoration(
+                context,
+                linearLayoutManager.orientation
+            )
 
-            }
-            spanSizeLookup = spanListener
-        }
-        recycler.apply{
-            layoutManager = gridLayoutManager
-            adapter = MovieListAdapter(twoPane, activity as AppCompatActivity)
-            addItemDecoration(SpacingItemDecoration(10))
-            addOnScrollListener(object : RecyclerView.OnScrollListener() {
-                override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-                    super.onScrolled(recyclerView, dx, dy)
+            recycler.apply {
+                layoutManager = linearLayoutManager
+                addItemDecoration(dividerItemDecoration)
+                addOnScrollListener(object : RecyclerView.OnScrollListener() {
+                    override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                        super.onScrolled(recyclerView, dx, dy)
 
-                    // scroll down
-                    if (dy > 0) {
-                        val visibleItemCount = gridLayoutManager.childCount;
-                        val totalItemCount = gridLayoutManager.itemCount;
-                        val pastVisiblesItems = gridLayoutManager.findFirstVisibleItemPosition();
-                        if ((visibleItemCount + pastVisiblesItems) >= totalItemCount) {
-                            movieViewModel.loadMore()
+                        // scroll down
+                        if (dy > 0) {
+
+                            val lastVisiblePosition: Int =
+                                linearLayoutManager.findLastVisibleItemPosition()
+                            if (lastVisiblePosition == recyclerView.childCount) {
+                                movieViewModel.loadMore()
+                            }
                         }
                     }
+                })
+                setHasFixedSize(true)
+                adapter = MovieListAdapter(twoPane, activity as AppCompatActivity)
+            }
+        } else {
+            val span = (resources.configuration.screenWidthDp / 320).plus(1)
+            val gridLayoutManager = GridLayoutManager(context, span).apply {
+                val spanListener = object : GridLayoutManager.SpanSizeLookup() {
+                    override fun getSpanSize(position: Int): Int {
+                        val size = recycler.adapter?.itemCount?.minus(1)
+                        if(position == size) {
+                            return span
+                        }
+                        return 1
+                    }
+
                 }
-            })
-            setHasFixedSize(true)
+                spanSizeLookup = spanListener
+            }
+            recycler.apply{
+                layoutManager = gridLayoutManager
+                adapter = MovieListAdapter(twoPane, activity as AppCompatActivity)
+                addItemDecoration(SpacingItemDecoration(10))
+                addOnScrollListener(object : RecyclerView.OnScrollListener() {
+                    override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                        super.onScrolled(recyclerView, dx, dy)
+
+                        // scroll down
+                        if (dy > 0) {
+                            val visibleItemCount = gridLayoutManager.childCount;
+                            val totalItemCount = gridLayoutManager.itemCount;
+                            val pastVisiblesItems =
+                                gridLayoutManager.findFirstVisibleItemPosition();
+                            if ((visibleItemCount + pastVisiblesItems) >= totalItemCount) {
+                                movieViewModel.loadMore()
+                            }
+                        }
+                    }
+                })
+                setHasFixedSize(true)
+            }
         }
 
         if (savedInstanceState == null) movieViewModel.getMovies(1)

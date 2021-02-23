@@ -1,109 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
-    tools:context=".ui.movie.MovieItemDetailActivity"
-    tools:ignore="MergeRootFrame">
-
-    <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/app_bar"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/app_bar_height"
-        android:fitsSystemWindows="true"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
-
-        <com.google.android.material.appbar.CollapsingToolbarLayout
-            android:id="@+id/toolbar_layout"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:fitsSystemWindows="true"
-            app:contentScrim="?attr/colorPrimary"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed"
-            app:toolbarId="@+id/toolbar">
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/image_toolbar"
-                android:scaleType="centerCrop"
-                android:fitsSystemWindows="true"
-                app:layout_collapseMode="none"
-            />
-
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/detail_toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                app:layout_collapseMode="pin"
-                app:contentInsetStartWithNavigation="0dp"
-                app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
-
-        </com.google.android.material.appbar.CollapsingToolbarLayout>
-
-    </com.google.android.material.appbar.AppBarLayout>
-
-    <androidx.core.widget.NestedScrollView
+    android:orientation="vertical"
+>
+    <ScrollView
         android:id="@+id/item_detail_container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        />
+        android:layout_height="match_parent" />
 
-<!--    <LinearLayout-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="200dp"-->
-<!--        app:layout_anchor="@+id/item_detail_container"-->
-<!--        app:layout_anchorGravity="top|center"-->
-<!--        android:orientation="horizontal"-->
-<!--    >-->
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/detail_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@android:color/transparent"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
 
-<!--        <androidx.appcompat.widget.AppCompatImageView-->
-<!--            android:layout_width="120dp"-->
-<!--            android:layout_height="match_parent"-->
-<!--            android:id="@+id/image_poster"-->
-<!--            android:fitsSystemWindows="true"-->
-<!--        />-->
-
-<!--        <LinearLayout-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:orientation="vertical">-->
-
-<!--            <androidx.appcompat.widget.AppCompatTextView-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:textAppearance="@style/TextAppearance.AppCompat.Caption"-->
-<!--                android:id="@+id/item_detail_title"-->
-<!--                android:paddingVertical="@dimen/item_detail_padding"-->
-<!--            />-->
-
-<!--            <androidx.appcompat.widget.AppCompatTextView-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:textAppearance="@style/TextAppearance.AppCompat.Caption"-->
-<!--                android:id="@+id/item_detail_rating"-->
-<!--                android:paddingVertical="@dimen/item_detail_padding"-->
-<!--            />-->
-
-<!--            <androidx.appcompat.widget.AppCompatTextView-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:textAppearance="@style/TextAppearance.AppCompat.Caption"-->
-<!--                android:id="@+id/item_detail_popularity"-->
-<!--                android:paddingVertical="@dimen/item_detail_padding"-->
-<!--            />-->
-<!--            <androidx.appcompat.widget.AppCompatTextView-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:textAppearance="@style/TextAppearance.AppCompat.Caption"-->
-<!--                android:id="@+id/item_detail_revenue"-->
-<!--                android:paddingVertical="@dimen/item_detail_padding"-->
-<!--            />-->
-<!--        </LinearLayout>-->
-
-<!--    </LinearLayout>-->
-
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+</FrameLayout>

@@ -6,4 +6,5 @@
     <dimen name="text_margin">16dp</dimen>
     <dimen name="item_detail_padding">10dp</dimen>
     <dimen name="banner_height">280dp</dimen>
+    <dimen name="two_pane_list">300dp</dimen>
 </resources>

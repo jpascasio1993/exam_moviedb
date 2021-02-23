@@ -22,9 +22,19 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    signingConfigs {
+        release {
+            keyAlias 'examkey'
+            keyPassword '123456'
+            storeFile file('./keystore/examkey')
+            storePassword '123456'
+        }
+    }
+
     buildTypes {
         release {
             minifyEnabled false
+            debuggable false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }

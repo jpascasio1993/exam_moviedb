@@ -8,7 +8,7 @@ import com.exam.moviedb.data.domain.Movie
 class MovieItemDetailActivity: AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_item_detail2)
+        setContentView(R.layout.activity_item_detail)
         setSupportActionBar(findViewById(R.id.detail_toolbar))
         val item = intent.getParcelableExtra<Movie>(MovieItemDetailFragment.ARG_ID)
 

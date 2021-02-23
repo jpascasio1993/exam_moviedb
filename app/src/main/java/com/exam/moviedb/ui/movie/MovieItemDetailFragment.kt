@@ -4,8 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.ViewParent
-import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
@@ -18,9 +16,6 @@ import com.bumptech.glide.request.RequestOptions
 import com.exam.moviedb.R
 import com.exam.moviedb.data.domain.Movie
 import com.exam.moviedb.utils.DateFormatter
-import com.google.android.material.appbar.CollapsingToolbarLayout
-import java.text.SimpleDateFormat
-import java.util.*
 
 class MovieItemDetailFragment : Fragment() {
 
@@ -36,7 +31,7 @@ class MovieItemDetailFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.item_detail2, container, false)
+        return inflater.inflate(R.layout.item_detail, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
