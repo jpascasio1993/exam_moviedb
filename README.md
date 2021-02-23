@@ -13,6 +13,7 @@ GSON
 Koin
 MVVM & Repository Pattern
 Room
+Glide
 
 ## Lacking due to time constraints on my end
 Mocking/Unit Tests,
