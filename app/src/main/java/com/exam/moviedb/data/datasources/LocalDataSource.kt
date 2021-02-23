@@ -30,23 +30,6 @@ class LocalDataSource(private val movieDAO: MovieDAO) : ILocalDataSource {
         }catch(e: Exception) {
             Result.Error(IOException(e.message, e))
         }
-//        return Transformations.map(movies) { itMain ->
-//            itMain.map {
-//                Movie(
-//                    it.backdropPath,
-//                    it.genreIds,
-//                    it.id,
-//                    it.overview,
-//                    it.popularity,
-//                    it.posterPath,
-//                    it.releaseDate,
-//                    it.title,
-//                    it.video,
-//                    it.voteCount,
-//                    it.page
-//                )
-//            }
-//        }
     }
 
     override suspend fun insertMovies(movies: List<MovieDTO>): Result<Unit> {
