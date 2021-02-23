@@ -44,7 +44,6 @@ class MovieViewModel(private val movieRepository: IMovieRepository) : ViewModel(
     }
 
     fun loadMore() {
-        Log.i("lastItem", "loadMore: ${_movies.value?.last()?.id} :: ${_movies.value?.last()?.page}")
         _movies.value?.last()?.page?.plus(1)?.let {
             getMovies(it)
         }
