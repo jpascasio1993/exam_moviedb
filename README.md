@@ -14,7 +14,7 @@ Koin
 MVVM & Repository Pattern
 Room
 
-##Lacking due to time constraints on my end
+## Lacking due to time constraints on my end
 Mocking/Unit Tests,
 Documentation,
 last visited,
