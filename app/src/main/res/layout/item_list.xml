@@ -1,11 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.recyclerview.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/item_list"
-    android:name="com.exam.moviedb.ui.movie.MovieItemsFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginLeft="16dp"
-    android:layout_marginRight="16dp"
-    tools:listitem="@layout/item_list_content" />
+    android:paddingHorizontal="16dp"
+    android:id="@+id/swiper">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/item_list"
+        android:name="com.exam.moviedb.ui.movie.MovieItemsFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:listitem="@layout/item_list_content" />
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

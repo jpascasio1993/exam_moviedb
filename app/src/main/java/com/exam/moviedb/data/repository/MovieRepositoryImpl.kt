@@ -1,5 +1,6 @@
 package com.exam.moviedb.data.repository
 
+import android.util.Log
 import com.exam.moviedb.data.datasources.ILocalDataSource
 import com.exam.moviedb.data.datasources.IRemoteDataSource
 import com.exam.moviedb.data.domain.Movie
@@ -13,7 +14,6 @@ class MovieRepositoryImpl(private val localSource: ILocalDataSource, private val
         return try {
             val listRemote = remoteSource.fetchMovies(page)
             localSource.insertMovies(listRemote)
-            Result.Success(Unit)
         }catch(e: Exception){
             Result.Error(IOException(e.message, e))
         }
@@ -21,6 +21,7 @@ class MovieRepositoryImpl(private val localSource: ILocalDataSource, private val
 
     override suspend fun getMovieList(page: Int): Result<List<Movie>> {
         val count = getMovieCount(page)
+
         if(count == 0) {
             getDataOnline(page)
         }

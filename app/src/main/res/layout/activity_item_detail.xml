@@ -32,6 +32,7 @@
                 android:fitsSystemWindows="true"
                 app:layout_collapseMode="none"
             />
+
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/detail_toolbar"
                 android:layout_width="match_parent"

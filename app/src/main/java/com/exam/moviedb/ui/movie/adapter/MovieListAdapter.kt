@@ -2,6 +2,7 @@ package com.exam.moviedb.ui.movie.adapter
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,25 +13,30 @@ import androidx.appcompat.widget.AppCompatTextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
-import com.bumptech.glide.signature.ObjectKey
 import com.exam.moviedb.R
 import com.exam.moviedb.data.domain.Movie
 import com.exam.moviedb.ui.movie.MovieItemDetailActivity
 import com.exam.moviedb.ui.movie.MovieItemDetailFragment
-import com.google.android.material.chip.Chip
+import com.exam.moviedb.utils.DateFormatter
 import java.util.Objects.equals
 
-class MovieListAdapter(val twoPane: Boolean, val parentActivity: AppCompatActivity) :
-    ListAdapter<Movie, MovieListAdapter.MovieListViewHolder>(MyListAdapterDiff) {
-
+class MovieListAdapter(private val twoPane: Boolean, private val parentActivity: AppCompatActivity) :
+    ListAdapter<Movie, RecyclerView.ViewHolder>(MyListAdapterDiff) {
+    private val FOOTER = 1;
     private val onClickListener: View.OnClickListener
-    private val glideRequestOptions = RequestOptions()
-        .diskCacheStrategy(DiskCacheStrategy.ALL)
-        .fitCenter()
-        .override(320)
+//    private val glideRequestOptions = RequestOptions()
+//        .diskCacheStrategy(DiskCacheStrategy.ALL)
+//        .fitCenter()
+//        .override(320)
+//        .placeholder(CircularProgressDrawable(parentActivity).apply {
+//            strokeWidth = 5f
+//            centerRadius = 30f
+//            start()
+//        })
 
     init {
         onClickListener = View.OnClickListener { view ->
@@ -62,34 +68,59 @@ class MovieListAdapter(val twoPane: Boolean, val parentActivity: AppCompatActivi
         val date: AppCompatTextView = itemView.findViewById(R.id.id_release_date)
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieListViewHolder {
+    inner class FooterListViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {}
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+        if(viewType == FOOTER) {
+            val view = LayoutInflater.from(parent.context).inflate(R.layout.item_footer, parent, false)
+            return FooterListViewHolder(view)
+        }
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.item_list_content, parent, false)
         return MovieListViewHolder(view)
+
     }
 
-    override fun onBindViewHolder(holder: MovieListViewHolder, position: Int) {
-        val movie = getItem(position);
+    override fun getItemViewType(position: Int): Int {
+        if(position == super.getItemCount().minus(1))
+            return FOOTER
 
-        with(holder.itemView) {
-            tag = movie.copy()
-            setOnClickListener(onClickListener)
-        }.let {
-            holder.titleView.text = movie.title
-            holder.rating.text = movie.voteAverage.toString()
-            holder.date.text = movie.releaseDate
-            Glide.with(parentActivity).load("https://image.tmdb.org/t/p/w500${movie?.posterPath}")
+        return super.getItemViewType(position)
+    }
 
-                .apply(glideRequestOptions)
-                .into(holder.poster)
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+        if(holder is MovieListViewHolder) {
+            val movie = getItem(position);
+
+            with(holder.itemView) {
+                tag = movie.copy()
+                setOnClickListener(onClickListener)
+            }.let {
+                holder.titleView.text = movie.title.trim().replace(System.getProperty("line.separator")?:"", "")
+                holder.rating.text = movie.voteAverage.toString()
+                holder.date.text = DateFormatter.format(input = movie.releaseDate)
+                val glideRequestOptions = RequestOptions()
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .fitCenter()
+                    .override(320)
+                    .placeholder(CircularProgressDrawable(parentActivity).apply {
+                        strokeWidth = 5f
+                        centerRadius = 30f
+                        start()
+                    })
+                Glide.with(parentActivity)
+                    .load(parentActivity.getString(R.string.tmdb_pic_base_url, "${movie?.posterPath}"))
+                    .apply(glideRequestOptions)
+                    .into(holder.poster)
+            }
         }
-
     }
+
 }
 
 object MyListAdapterDiff : DiffUtil.ItemCallback<Movie>() {
     override fun areItemsTheSame(oldItem: Movie, newItem: Movie): Boolean {
-        return equals(oldItem, newItem)
+        return oldItem.id == newItem.id
     }
 
     override fun areContentsTheSame(oldItem: Movie, newItem: Movie): Boolean {

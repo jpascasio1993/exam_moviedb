@@ -4,4 +4,7 @@
     <string name="movie_list">/3/list/%1$s</string>
     <string name="movie_detail">Movie Detail</string>
     <string name="movie_hint_title">Movie Hint Title</string>
+    <string name="item_detail_label_synopsis">Synopsis</string>
+    <string name="tmdb_pic_base_url">https://image.tmdb.org/t/p/w500%1$s</string>
+    <string name="footer_label">Fetching more movies</string>
 </resources>

@@ -2,18 +2,15 @@ package com.exam.moviedb.ui.movie
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.AppCompatImageView
-import com.bumptech.glide.Glide
 import com.exam.moviedb.R
 import com.exam.moviedb.data.domain.Movie
 
 class MovieItemDetailActivity: AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_item_detail)
+        setContentView(R.layout.activity_item_detail2)
         setSupportActionBar(findViewById(R.id.detail_toolbar))
         val item = intent.getParcelableExtra<Movie>(MovieItemDetailFragment.ARG_ID)
-        Glide.with(this).load("https://image.tmdb.org/t/p/w500${item?.backdropPath}").into(findViewById<AppCompatImageView>(R.id.image_toolbar));
 
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)

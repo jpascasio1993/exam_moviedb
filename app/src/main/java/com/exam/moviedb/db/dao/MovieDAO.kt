@@ -11,10 +11,10 @@ interface MovieDAO {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertMovieListInfo(movies: List<MovieDTO>)
 
-    @Query("select * from movies where page=:page order by id")
+    @Query("select * from movies where page=:page order by vote_average desc, popularity asc")
     fun fetchMovies(page: Int): List<MovieDTO>
 
-    @Query("select COUNT(*) from movies where page=:page")
+    @Query("select COUNT(*) from movies where page=:page order by vote_average desc, popularity asc")
     fun getMoviesCount(page: Int): Int
 
 }

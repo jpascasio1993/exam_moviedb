@@ -1,6 +1,8 @@
 package com.exam.moviedb.ui.movie
 
+import android.content.res.Resources
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,6 +12,7 @@ import androidx.core.widget.NestedScrollView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.exam.moviedb.MainActivity
 import com.exam.moviedb.R
 import com.exam.moviedb.ui.movie.adapter.MovieListAdapter
@@ -46,24 +49,45 @@ class MovieItemsFragment : Fragment() {
             twoPane = true
         }
         setupRecyclerView(view!!.findViewById(R.id.item_list), savedInstanceState)
+        setupSwipeToRefresh()
     }
 
     private fun setupRecyclerView(recycler: RecyclerView, savedInstanceState: Bundle?) {
-//        recycler.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-//            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-//                val lastVisiblePosition: Int = (recycler.layoutManager as LinearLayoutManager).findLastVisibleItemPosition()
-//                if (lastVisiblePosition == recyclerView.childCount) {
-//                    movieViewModel.loadMore()
-//                }
-//            }
-//        }
 
-        val gridLayoutManager = GridLayoutManager(context, 2)
+        val span = (resources.configuration.screenWidthDp / 320).plus(1)
+        val gridLayoutManager = GridLayoutManager(context, span).apply {
+            val spanListener = object : GridLayoutManager.SpanSizeLookup() {
+                override fun getSpanSize(position: Int): Int {
+                    val size = recycler.adapter?.itemCount?.minus(1)
+                    if(position == size) {
+                        return span
+                    }
+                    return 1
+                }
 
-        with(recycler) {
+            }
+            spanSizeLookup = spanListener
+        }
+        recycler.apply{
             layoutManager = gridLayoutManager
             adapter = MovieListAdapter(twoPane, activity as AppCompatActivity)
             addItemDecoration(SpacingItemDecoration(10))
+            addOnScrollListener(object : RecyclerView.OnScrollListener() {
+                override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                    super.onScrolled(recyclerView, dx, dy)
+
+                    // scroll down
+                    if (dy > 0) {
+                        val visibleItemCount = gridLayoutManager.childCount;
+                        val totalItemCount = gridLayoutManager.itemCount;
+                        val pastVisiblesItems = gridLayoutManager.findFirstVisibleItemPosition();
+                        if ((visibleItemCount + pastVisiblesItems) >= totalItemCount) {
+                            movieViewModel.loadMore()
+                        }
+                    }
+                }
+            })
+            setHasFixedSize(true)
         }
 
         if (savedInstanceState == null) movieViewModel.getMovies(1)
@@ -71,5 +95,20 @@ class MovieItemsFragment : Fragment() {
         movieViewModel.movieList.observe(this@MovieItemsFragment, { movies ->
             (recycler.adapter as MovieListAdapter).submitList(movies)
         })
+    }
+
+    private fun setupSwipeToRefresh() {
+        val swiper = view!!.findViewById<SwipeRefreshLayout>(R.id.swiper)
+
+        swiper.apply {
+            setOnRefreshListener {
+                movieViewModel.refresh(1)
+            }
+        }
+
+        movieViewModel.isRefreshing.observe(this@MovieItemsFragment, {
+            swiper.isRefreshing = it
+        })
+
     }
 }

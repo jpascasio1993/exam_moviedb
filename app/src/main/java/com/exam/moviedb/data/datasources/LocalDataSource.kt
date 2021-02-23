@@ -1,13 +1,10 @@
 package com.exam.moviedb.data.datasources
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.Transformations
 import com.exam.moviedb.data.domain.Movie
 import com.exam.moviedb.data.domain.MovieDTO
 import com.exam.moviedb.data.domain.Result
 import com.exam.moviedb.db.dao.MovieDAO
 import okio.IOException
-import java.lang.Exception
 
 class LocalDataSource(private val movieDAO: MovieDAO) : ILocalDataSource {
 
@@ -25,6 +22,7 @@ class LocalDataSource(private val movieDAO: MovieDAO) : ILocalDataSource {
                     it.title,
                     it.video,
                     it.voteAverage,
+                    it.voteCount,
                     it.page
                 )
             }

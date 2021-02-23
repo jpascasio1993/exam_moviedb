@@ -14,11 +14,11 @@ class SpacingItemDecoration(private val space: Int): RecyclerView.ItemDecoration
         outRect.apply {
             left = space
             right = space
-            bottom = space * 2
-            top = 0
-            if(parent.getChildLayoutPosition(view) == 0){
-                top = space * 2
-            }
+            bottom = space
+            top = space
+//            if(parent.getChildLayoutPosition(view) == 0){
+//                top = space
+//            }
         }
     }
 }
