@@ -8,11 +8,12 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.widget.NestedScrollView
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.exam.moviedb.MainActivity
 import com.exam.moviedb.R
 import com.exam.moviedb.ui.movie.adapter.MovieListAdapter
+import com.exam.moviedb.ui.movie.adapter.SpacingItemDecoration
 import org.koin.android.ext.android.inject
 
 
@@ -55,10 +56,15 @@ class MovieItemsFragment : Fragment() {
 //                    movieViewModel.loadMore()
 //                }
 //            }
-//        })
+//        }
 
-        recycler.adapter =
-            MovieListAdapter(twoPane, activity as AppCompatActivity)
+        val gridLayoutManager = GridLayoutManager(context, 2)
+
+        with(recycler) {
+            layoutManager = gridLayoutManager
+            adapter = MovieListAdapter(twoPane, activity as AppCompatActivity)
+            addItemDecoration(SpacingItemDecoration(10))
+        }
 
         if (savedInstanceState == null) movieViewModel.getMovies(1)
 
