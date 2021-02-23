@@ -105,7 +105,6 @@ class MovieItemsFragment : Fragment() {
                     override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                         super.onScrolled(recyclerView, dx, dy)
 
-                        // scroll down
                         if (dy > 0) {
                             val visibleItemCount = gridLayoutManager.childCount;
                             val totalItemCount = gridLayoutManager.itemCount;

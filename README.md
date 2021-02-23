@@ -17,6 +17,6 @@ Room
 ## Lacking due to time constraints on my end
 Mocking/Unit Tests,
 Documentation,
-last visited,
+shows time of last visited/refreshed,
 restoration of last page visited
 
