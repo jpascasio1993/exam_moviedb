@@ -20,8 +20,10 @@
             </intent-filter>
         </activity>
         <activity android:name=".MainActivity"
+            android:launchMode="singleTop"
             android:theme="@style/AppTheme.NoActionBar"/>
         <activity
+            android:launchMode="singleTop"
             android:name=".ui.movie.MovieItemDetailActivity"
             android:label="@string/movie_detail"
             android:parentActivityName=".MainActivity"
