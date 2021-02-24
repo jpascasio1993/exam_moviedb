@@ -24,13 +24,3 @@ class MovieDeserializer : JsonDeserializer<List<MovieDTO>> {
     }
 
 }
-
-fun JsonObject.getNullable(key: String): JsonElement? {
-    val value: JsonElement = this.get(key) ?: return null
-
-    if (value.isJsonNull) {
-        return null
-    }
-
-    return value
-}
