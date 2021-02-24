@@ -20,7 +20,7 @@ import com.exam.moviedb.R
 import com.exam.moviedb.data.domain.Movie
 import com.exam.moviedb.ui.movie.MovieItemDetailActivity
 import com.exam.moviedb.ui.movie.MovieItemDetailFragment
-import com.exam.moviedb.utils.DateFormatter
+import com.exam.moviedb.utils.dateFormat
 import java.util.Objects.equals
 
 class MovieListAdapter(private val twoPane: Boolean, private val parentActivity: AppCompatActivity) :
@@ -88,7 +88,7 @@ class MovieListAdapter(private val twoPane: Boolean, private val parentActivity:
             }.apply {
                 holder.titleView.text = movie.title.trim().replace(System.getProperty("line.separator")?:"", "")
                 holder.rating.text = movie.voteAverage.toString()
-                holder.date.text = DateFormatter.format(input = movie.releaseDate)
+                holder.date.text = movie.releaseDate.dateFormat()
                 val glideRequestOptions = RequestOptions()
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .fitCenter()

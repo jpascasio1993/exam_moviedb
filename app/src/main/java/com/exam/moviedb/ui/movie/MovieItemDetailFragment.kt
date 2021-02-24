@@ -15,7 +15,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
 import com.exam.moviedb.R
 import com.exam.moviedb.data.domain.Movie
-import com.exam.moviedb.utils.DateFormatter
+import com.exam.moviedb.utils.dateFormat
 
 class MovieItemDetailFragment : Fragment() {
 
@@ -58,7 +58,7 @@ class MovieItemDetailFragment : Fragment() {
                     v.findViewById<AppCompatTextView>(R.id.item_detail_votes).text =
                         "${item?.voteCount.toString()} Votes"
                     v.findViewById<AppCompatTextView>(R.id.item_detail_date).text =
-                        DateFormatter.format(input = item?.releaseDate ?: "")
+                        item?.releaseDate?.dateFormat()
 
                     Glide.with(this)
                         .load(
