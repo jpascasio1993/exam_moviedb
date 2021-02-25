@@ -56,8 +56,9 @@ object DIModule {
         }
 
         single<Retrofit> {
+            val context = get<Context>()
             Retrofit.Builder()
-                .baseUrl("https://api.themoviedb.org")
+                .baseUrl(context.getString(R.string.tmdb_base_url))
                 .client(get())
                 .addConverterFactory(
                     GsonConverterFactory.create(

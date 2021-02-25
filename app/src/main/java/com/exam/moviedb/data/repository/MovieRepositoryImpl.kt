@@ -15,6 +15,7 @@ class MovieRepositoryImpl(private val localSource: ILocalDataSource, private val
             val listRemote = remoteSource.fetchMovies(page)
             localSource.insertMovies(listRemote)
         }catch(e: Exception){
+            e.printStackTrace()
             Result.Error(IOException(e.message, e))
         }
     }
