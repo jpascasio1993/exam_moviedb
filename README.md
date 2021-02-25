@@ -21,8 +21,8 @@ Documentation,
 shows time of last visited/refreshed,
 restoration of last page visited
 
-![Image 0](https://github.com/jpascasio1993/exam_moviedb/0.jpg)
-![Image 1](https://github.com/jpascasio1993/exam_moviedb/1.jpg)
-![Image 2](https://github.com/jpascasio1993/exam_moviedb/2.jpg)
-![Image 3](https://github.com/jpascasio1993/exam_moviedb/3.jpg)
-![Image 4](https://github.com/jpascasio1993/exam_moviedb/4.jpg)
+![Image 0](https://github.com/jpascasio1993/exam_moviedb/blob/master/0.jpg)
+![Image 1](https://github.com/jpascasio1993/exam_moviedb/blob/master/1.jpg)
+![Image 2](https://github.com/jpascasio1993/exam_moviedb/blob/master/2.jpg)
+![Image 3](https://github.com/jpascasio1993/exam_moviedb/blob/master/3.jpg)
+![Image 4](https://github.com/jpascasio1993/exam_moviedb/blob/master/4.jpg)
