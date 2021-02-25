@@ -1,4 +1,4 @@
-# Foobar
+# MovieDB
 
 MovieDB shows lists of popular movies
 
