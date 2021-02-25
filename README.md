@@ -5,6 +5,7 @@ MovieDB shows lists of popular movies
 ## APK
 
 Apk is available in app/release folder
+[APK](https://github.com/jpascasio1993/exam_moviedb/raw/master/app/release/app-release.apk)
 
 ## Libraries/Techs/Architecture Used
 Retrofit

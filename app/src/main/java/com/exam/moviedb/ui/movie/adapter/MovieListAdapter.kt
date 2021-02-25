@@ -24,7 +24,7 @@ import java.util.Objects.equals
 
 class MovieListAdapter(private val twoPane: Boolean, private val parentActivity: AppCompatActivity) :
     ListAdapter<Movie, RecyclerView.ViewHolder>(MovieListAdapterDiff) {
-    private val FOOTER = 1;
+    private val LOADING_VIEW = 1;
     private val onClickListener: View.OnClickListener
 
     init {
@@ -60,7 +60,7 @@ class MovieListAdapter(private val twoPane: Boolean, private val parentActivity:
     inner class FooterListViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {}
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        if(viewType == FOOTER) {
+        if(viewType == LOADING_VIEW) {
             val view = LayoutInflater.from(parent.context).inflate(R.layout.item_footer, parent, false)
             return FooterListViewHolder(view)
         }
@@ -72,7 +72,7 @@ class MovieListAdapter(private val twoPane: Boolean, private val parentActivity:
 
     override fun getItemViewType(position: Int): Int {
         if(position == super.getItemCount().minus(1))
-            return FOOTER
+            return LOADING_VIEW
 
         return super.getItemViewType(position)
     }

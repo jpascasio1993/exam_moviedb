@@ -15,7 +15,6 @@ import com.exam.moviedb.data.services.ServiceBuilder
 import com.exam.moviedb.db.AppDatabase
 import com.exam.moviedb.ui.movie.MovieViewModel
 import com.exam.moviedb.utils.gson.MovieDeserializer
-import com.exam.moviedb.utils.gson.StringNullTypeAdapter
 import com.google.gson.GsonBuilder
 import com.google.gson.reflect.TypeToken
 import okhttp3.OkHttpClient
