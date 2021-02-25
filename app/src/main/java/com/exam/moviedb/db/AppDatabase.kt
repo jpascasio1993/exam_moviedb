@@ -4,12 +4,14 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.migration.Migration
+import androidx.sqlite.db.SupportSQLiteDatabase
 import com.exam.moviedb.db.dao.MovieDAO
 import com.exam.moviedb.data.domain.MovieDTO
 
 @Database(
     entities = [MovieDTO::class],
-    version = 1
+    version = 5
 )
 abstract class AppDatabase : RoomDatabase() {
 
@@ -25,6 +27,7 @@ abstract class AppDatabase : RoomDatabase() {
 
         private fun build(context: Context) =
             Room.databaseBuilder(context.applicationContext, AppDatabase::class.java, "movie.db")
+                .fallbackToDestructiveMigration()
                 .build()
     }
 }

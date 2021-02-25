@@ -12,7 +12,7 @@ fun String.dateFormat(inputFormat: String = "yyyy-MM-dd", outputFormat: String =
 
         return try {
             val parsed = dateFormatIn.parse(this)
-            dateFormatOut.format(parsed)
+            dateFormatOut.format(parsed!!)
         }catch(e: Exception) {
             return this
         }

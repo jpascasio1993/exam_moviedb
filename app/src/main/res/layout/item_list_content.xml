@@ -20,7 +20,7 @@
             android:id="@+id/id_poster"
             android:layout_width="match_parent"
             android:layout_height="240dp"
-            android:scaleType="fitCenter"
+            android:scaleType="fitXY"
             android:adjustViewBounds="true"/>
 
         <LinearLayout

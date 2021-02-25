@@ -28,7 +28,6 @@ class MovieViewModel(private val movieRepository: IMovieRepository) : ViewModel(
 
     fun getMovies(page: Int) {
         if(_loading.value == true) return
-
         _loading.value = true
         GlobalScope.launch(Dispatchers.IO) {
             movieRepository.getMovieList(page).also {
