@@ -8,12 +8,12 @@ Apk is available in app/release folder
 [APK](https://github.com/jpascasio1993/exam_moviedb/raw/master/app/release/app-release.apk)
 
 ## Libraries/Techs/Architecture Used
-Retrofit
-Coroutines
-GSON
-Koin
-MVVM & Repository Pattern
-Room
+Retrofit,
+Coroutines,
+GSON,
+Koin,
+MVVM & Repository Pattern,
+Room,
 Glide
 
 ## Lacking due to time constraints on my end
